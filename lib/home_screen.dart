@@ -8,9 +8,9 @@ class HomeScreen extends StatefulWidget {
     required this.desktopScaffold,
   });
 
-  final Widget mobileScaffold;
-  final Widget tabletScaffold;
-  final Widget desktopScaffold;
+  final Widget Function(double width) mobileScaffold;
+  final Widget Function(double width) tabletScaffold;
+  final Widget Function(double width) desktopScaffold;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,12 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth <= 500) {
-          return widget.mobileScaffold;
-        } else if (constraints.maxWidth < 1100) {
-          return widget.tabletScaffold;
+        double w = constraints.maxWidth;
+        if (w <= 500) {
+          return widget.mobileScaffold(w);
+        } else if (w < 1100) {
+          return widget.tabletScaffold(w);
         } else {
-          return widget.desktopScaffold;
+          return widget.desktopScaffold(w);
         }
       },
     );
