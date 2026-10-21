@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/logic/calculator_logic.dart';
 import 'package:flutter_application_1/ui/calculator_button.dart';
 
-class CalculatorUI extends StatelessWidget {
+class CalculatorUI extends StatefulWidget {
   const new({super.key});
 
   static const _gap = 10.0;
+
+  @override
+  State<CalculatorUI> createState() => _CalculatorUIState();
+}
+
+class _CalculatorUIState extends State<CalculatorUI> {
+  final _logic = CalculatorLogic();
+
+  void _onKey(String label) => setState(() {
+    _logic.press(label);
+  });
+
   Widget _key(
     String label, {
     CalcButtonType type = CalcButtonType.number,
@@ -12,13 +25,18 @@ class CalculatorUI extends StatelessWidget {
   }) {
     return Expanded(
       flex: flex,
-      child: CalculatorButton(label: label, type: type, wide: flex == 2, onTap: () {}),
+      child: CalculatorButton(
+        label: label,
+        type: type,
+        wide: flex == 2,
+        onTap: () => _onKey(label),
+      ),
     );
   }
 
   Widget _row(List<Widget> keys) {
     return Expanded(
-      child: Row(spacing: _gap, children: [...keys]),
+      child: Row(spacing: CalculatorUI._gap, children: [...keys]),
     );
   }
 
@@ -32,15 +50,15 @@ class CalculatorUI extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             alignment: Alignment.bottomRight,
-            child: const FittedBox(
+            child: FittedBox(
               // long numbers shrink, no overflow
               fit: BoxFit.scaleDown,
               child: Text(
-                '0',
+                _logic.display,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 70,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 60,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
@@ -51,7 +69,7 @@ class CalculatorUI extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(30),
             child: Column(
-              spacing: _gap,
+              spacing: CalculatorUI._gap,
               children: [
                 _row([
                   _key('AC', type: fn),
