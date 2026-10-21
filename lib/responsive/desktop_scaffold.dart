@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/calculator_ui.dart';
+import 'package:flutter_application_1/ui/calculator_ui.dart';
 
 class DesktopScaffold extends StatefulWidget {
   const new({super.key, required this.screenWidth});
@@ -40,7 +40,9 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
               decoration: BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(20)),
               border: BoxBorder.all(color: Colors.white24, width: 5)
-            ), width: 490, child: CalculatorUI(style: style)),
+            ), width: 490, child: CalculatorUI(
+              
+            )),
           ),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/calculator_ui.dart';
+import 'package:flutter_application_1/ui/calculator_ui.dart';
 
 class MobileScaffold extends StatefulWidget {
   const new({super.key, required this.screenWidth});
@@ -23,7 +23,7 @@ class _MobileScaffoldState extends State<MobileScaffold> {
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.black,
-          body: CalculatorUI(style: style),
+          body: CalculatorUI(),
         ),
       ),
     );

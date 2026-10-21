@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/calculator_ui.dart';
+import 'package:flutter_application_1/ui/calculator_ui.dart';
 
 class TabletScaffold extends StatefulWidget {
   const new({super.key, required this.screenWidth});
@@ -36,7 +36,7 @@ Widget build(BuildContext context) {
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
-            child: SizedBox(width: 490, child: CalculatorUI(style: style)),
+            child: SizedBox(width: 490, child: CalculatorUI()),
           ),
         ),
       ),
