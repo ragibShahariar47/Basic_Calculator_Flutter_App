@@ -14,9 +14,10 @@ class CalculatorUI extends StatefulWidget {
 class _CalculatorUIState extends State<CalculatorUI> {
   final _logic = CalculatorLogic();
 
-  void _onKey(String label) => setState(() {
-    _logic.press(label);
-  });
+  void _onKey(String label) {
+    debugPrint('key: "$label"');
+    setState(() => _logic.press(label));
+  }
 
   Widget _key(
     String label, {
@@ -51,14 +52,13 @@ class _CalculatorUIState extends State<CalculatorUI> {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             alignment: Alignment.bottomRight,
             child: FittedBox(
-              // long numbers shrink, no overflow
               fit: BoxFit.scaleDown,
               child: Text(
                 _logic.display,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 60,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 70,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
